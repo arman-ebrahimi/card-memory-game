@@ -1,0 +1,44 @@
+.App
+  background-image: url("https://s6.uupload.ir/files/images_z9v6.jpeg")
+  text-align: center
+  height: 120vh
+.game-page
+  background-color: yellow
+  width: 45vw
+  aspect-ratio: 1 / 1
+  margin: 20px auto
+  padding: 30px 25px
+  border-radius: 10px
+  box-shadow: 10px 10px 25px black
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  grid-gap: 5%
+  div.single-card
+    background-color: #333
+    color: transparent
+    border-radius: 15px
+    vertical-align: middle
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 1.8em
+  div.show-card
+    color: white
+    background-color: orange
+  div.winner-card
+    color: white
+    background-color: orange
+    animation: resize 1s
+@keyframes resize
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.2)
+  100%
+    transform: scale(0.8)
+
+
+
+
+
+
