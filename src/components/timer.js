@@ -14,5 +14,5 @@ export const Timer = () => {
         return () => clearInterval(Int)
     })
 
-    return <p>{time.minute < 10 && "0"}{time.minute} : {time.second < 10 && "0"}{time.second}</p>
+    return <span>{time.minute < 10 && "0"}{time.minute} : {time.second < 10 && "0"}{time.second}</span>
 }
