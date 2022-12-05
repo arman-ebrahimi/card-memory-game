@@ -1,14 +1,18 @@
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
 
 import {Timer} from "../components/timer";
 import {shuffledArray} from "../data/data.js";
 
 export const GamePage = () => {
+
     const [show, setShow] = useState({isShow: false, indexes: [], winnerId: []});
     const [countMoves, setCount] = useState(0);
     const [stars, setStars] = useState([1, 1, 1]);
+    const [time, setTime] = useState({minute: 0, second: 0})
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleReload = () => {
         window.location.reload();
     }
@@ -38,9 +42,13 @@ export const GamePage = () => {
 
     useEffect(() => {
         if(show.winnerId.length === 8){
-            setTimeout(() => navigate('/result'), 1000)
+            setTimeout(() => {
+                dispatch({type: "result/getFinalResult",
+                    payload: {minute: time.minute, second: time.second, moves: countMoves, stars: stars.filter(item => item === 1).length}})
+                navigate('/result')
+            }, 1000)
         }
-    })
+    }, [show.winnerId.length])
 
     return(
         <>
@@ -52,7 +60,7 @@ export const GamePage = () => {
                     })}
                 </div>
                 <span>{countMoves} Moves</span>
-                <Timer />
+                <Timer time={time} setTime={setTime} />
                 <span className="fs-3" role="button" onClick={handleReload}>&#x21bb;</span>
             </div>
             <div className="game-box">

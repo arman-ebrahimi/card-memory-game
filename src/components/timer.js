@@ -1,7 +1,6 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
-export const Timer = () => {
-    const [time, setTime] = useState({minute: 0, second: 0})
+export const Timer = ({time, setTime}) => {
     useEffect(() => {
         let Int = setInterval(function (){
             if(time.second === 59){
