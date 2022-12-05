@@ -47,7 +47,7 @@ export const GamePage = () => {
                     payload: {minute: time.minute, second: time.second, moves: countMoves, stars: stars.filter(item => item === 1).length}})
                 navigate('/result')
             }, 1000)
-        }
+        }// eslint-disable-next-line
     }, [show.winnerId.length])
 
     return(
