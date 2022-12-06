@@ -21,7 +21,7 @@ export const GamePage = () => {
     }
     const handleClick = (index) => {
         if(state.show.indexes.length === 1){
-            setState({...state, countMoves: state.countMoves++})
+            setState({...state, countMoves: state.countMoves + 1})
         }
         if(state.show.indexes.length === 2){
             return console.log("limit")
