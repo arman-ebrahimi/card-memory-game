@@ -1,13 +1,13 @@
 import {useEffect} from "react";
 
-export const Timer = ({time, setTime}) => {
+export const Timer = ({time, setState}) => {
     useEffect(() => {
         let Int = setInterval(function (){
             if(time.second === 59){
-                setTime({minute: time.minute + 1, second: 0})
+                setState(prevState => ({...prevState, time: {minute: time.minute + 1, second: 0}}))
             }
             else{
-                setTime({...time, second: time.second + 1})
+                setState(prevState => ({...prevState, time: {...time, second: time.second + 1}}))
             }
         }, 1000)
         return () => clearInterval(Int)

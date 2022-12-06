@@ -5,68 +5,71 @@ import {useEffect, useState} from "react";
 import {Timer} from "../components/timer";
 import {shuffledArray} from "../data/data.js";
 
-export const GamePage = () => {
+const initialState = {
+    show: {isShow: false, indexes: [], winnerId: []},
+    countMoves: 0,
+    stars: [1, 1, 1],
+    time: {minute: 0, second: 0}
+}
 
-    const [show, setShow] = useState({isShow: false, indexes: [], winnerId: []});
-    const [countMoves, setCount] = useState(0);
-    const [stars, setStars] = useState([1, 1, 1]);
-    const [time, setTime] = useState({minute: 0, second: 0})
+export const GamePage = () => {
+    const [state, setState] = useState(initialState);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleReload = () => {
-        window.location.reload();
+        setState(initialState);
     }
     const handleClick = (index) => {
-        if(show.indexes.length === 1){
-            setCount(countMoves + 1)
+        if(state.show.indexes.length === 1){
+            setState({...state, countMoves: state.countMoves++})
         }
-        if(show.indexes.length === 2){
+        if(state.show.indexes.length === 2){
             return console.log("limit")
         }
-        if(show.isShow && shuffledArray[show.indexes[0]].id === shuffledArray[index].id){
-            let indexOfZero = stars.indexOf(0);
-            let newStars = stars;
+        if(state.show.isShow && shuffledArray[state.show.indexes[0]].id === shuffledArray[index].id){
+            let indexOfZero = state.stars.indexOf(0);
+            let newStars = state.stars;
             newStars[indexOfZero] = 1;
-            setStars(newStars);
-            return setShow({isShow: false, indexes: [], winnerId: [...show.winnerId, shuffledArray[index].id]})
+            setState({...state, stars: newStars})
+            return setState({...state, show: {isShow: false, indexes: [], winnerId: [...state.show.winnerId, shuffledArray[index].id]}})
         }
-        else if(show.isShow && shuffledArray[show.indexes[0]].id !== shuffledArray[index].id){
-            let indexOfOne = stars.lastIndexOf(1);
-            let newStars = stars;
+        else if(state.show.isShow && shuffledArray[state.show.indexes[0]].id !== shuffledArray[index].id){
+            let indexOfOne = state.stars.lastIndexOf(1);
+            let newStars = state.stars;
             newStars[indexOfOne] = 0;
-            setStars(newStars);
-            setTimeout(function(){ setShow({...show, isShow: false, indexes: []}) }, 2000)
+            setState({...state, stars: newStars})
+            setTimeout(function(){ setState({...state, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
         }
-        setShow({...show, isShow: true, indexes: [...show.indexes, index]});
+        setState({...state, show: {...state.show, isShow: true, indexes: [...state.show.indexes, index]}});
     }
 
     useEffect(() => {
-        if(show.winnerId.length === 8){
+        if(state.show.winnerId.length === 8){
             setTimeout(() => {
                 dispatch({type: "result/getFinalResult",
-                    payload: {minute: time.minute, second: time.second, moves: countMoves, stars: stars.filter(item => item === 1).length}})
+                    payload: {minute: state.time.minute, second: state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
                 navigate('/result')
             }, 1000)
         }// eslint-disable-next-line
-    }, [show.winnerId.length])
+    }, [state.show.winnerId.length])
 
     return(
         <>
             <h1>Matching Game</h1>
             <div className="d-flex justify-content-around align-items-center text-white w-25 mx-auto fw-bold fs-5">
                 <div className="d-flex">
-                    {stars.map((item, index) => {
-                        return <span key={index} className={`${stars[index] === 1 ? "text-black" : "text-white"} me-1`}>&#9733;</span>
+                    {state.stars.map((item, index) => {
+                        return <span key={index} className={`${state.stars[index] === 1 ? "text-black" : "text-white"} me-1`}>&#9733;</span>
                     })}
                 </div>
-                <span>{countMoves} Moves</span>
-                <Timer time={time} setTime={setTime} />
+                <span>{state.countMoves} Moves</span>
+                <Timer time={state.time} setState={setState} />
                 <span className="fs-3" role="button" onClick={handleReload}>&#x21bb;</span>
             </div>
             <div className="game-box">
                 {shuffledArray.map((item, index) => {
                     return(
-                        <div key={index} className={`${item.code} single-card ${show.isShow && show.indexes.includes(index) && "show-card"} ${show.winnerId.includes(item.id) && "winner-card"}`}
+                        <div key={index} className={`${item.code} single-card ${state.show.isShow && state.show.indexes.includes(index) && "show-card"} ${state.show.winnerId.includes(item.id) && "winner-card"}`}
                              onClick={() => handleClick(index)}></div>
                     )
                 })}
