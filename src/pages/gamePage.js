@@ -20,9 +20,6 @@ export const GamePage = () => {
         setState(initialState);
     }
     const handleClick = (index) => {
-        if(state.show.indexes.length === 1){
-            setState({...state, countMoves: state.countMoves + 1})
-        }
         if(state.show.indexes.length === 2){
             return console.log("limit")
         }
@@ -31,14 +28,14 @@ export const GamePage = () => {
             let newStars = state.stars;
             newStars[indexOfZero] = 1;
             setState({...state, stars: newStars})
-            return setState({...state, show: {isShow: false, indexes: [], winnerId: [...state.show.winnerId, shuffledArray[index].id]}})
+            return setState({...state, countMoves: state.countMoves + 1, show: {isShow: false, indexes: [], winnerId: [...state.show.winnerId, shuffledArray[index].id]}})
         }
         else if(state.show.isShow && shuffledArray[state.show.indexes[0]].id !== shuffledArray[index].id){
             let indexOfOne = state.stars.lastIndexOf(1);
             let newStars = state.stars;
             newStars[indexOfOne] = 0;
             setState({...state, stars: newStars})
-            setTimeout(function(){ setState({...state, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
+            setTimeout(function(){ setState({...state, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
         }
         setState({...state, show: {...state.show, isShow: true, indexes: [...state.show.indexes, index]}});
     }
