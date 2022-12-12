@@ -19,23 +19,21 @@ export const GamePage = () => {
     const handleReload = () => {
         setState(initialState);
     }
-    const handleClick = (index) => {
-        if(state.show.indexes.length === 2){
-            return console.log("limit")
+    const handleClick = (e, index) => {
+        if(state.show.indexes.length === 2 || state.show.indexes[0] === index){
+            return
         }
         if(state.show.isShow && shuffledArray[state.show.indexes[0]].id === shuffledArray[index].id){
             let indexOfZero = state.stars.indexOf(0);
             let newStars = state.stars;
             newStars[indexOfZero] = 1;
-            setState({...state, stars: newStars})
-            return setState({...state, countMoves: state.countMoves + 1, show: {isShow: false, indexes: [], winnerId: [...state.show.winnerId, shuffledArray[index].id]}})
+            return setState({...state, stars: newStars, countMoves: state.countMoves + 1, show: {isShow: false, indexes: [], winnerId: [...state.show.winnerId, shuffledArray[index].id]}})
         }
         else if(state.show.isShow && shuffledArray[state.show.indexes[0]].id !== shuffledArray[index].id){
             let indexOfOne = state.stars.lastIndexOf(1);
             let newStars = state.stars;
             newStars[indexOfOne] = 0;
-            setState({...state, stars: newStars})
-            setTimeout(function(){ setState({...state, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
+            setTimeout(function(){ setState({...state, stars: newStars, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
         }
         setState({...state, show: {...state.show, isShow: true, indexes: [...state.show.indexes, index]}});
     }
@@ -56,7 +54,7 @@ export const GamePage = () => {
             <div className="d-flex justify-content-around align-items-center text-white w-25 mx-auto fw-bold fs-5">
                 <div className="d-flex">
                     {state.stars.map((item, index) => {
-                        return <span key={index} className={`${state.stars[index] === 1 ? "text-black" : "text-white"} me-1`}>&#9733;</span>
+                        return <span key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1 fs-5`}>&#9733;</span>
                     })}
                 </div>
                 <span>{state.countMoves} Moves</span>
@@ -67,7 +65,7 @@ export const GamePage = () => {
                 {shuffledArray.map((item, index) => {
                     return(
                         <div key={index} className={`${item.code} single-card ${state.show.isShow && state.show.indexes.includes(index) && "show-card"} ${state.show.winnerId.includes(item.id) && "winner-card"}`}
-                             onClick={() => handleClick(index)}></div>
+                             onClick={(e) => handleClick(e, index)}></div>
                     )
                 })}
             </div>
