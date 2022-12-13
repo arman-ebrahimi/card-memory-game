@@ -51,7 +51,7 @@ export const GamePage = () => {
     return(
         <>
             <h1>Matching Game</h1>
-            <div className="d-flex justify-content-around align-items-center text-white w-25 mx-auto fw-bold fs-5">
+            <div className="d-flex justify-content-around align-items-center w-25 mx-auto fw-bold fs-5">
                 <div className="d-flex">
                     {state.stars.map((item, index) => {
                         return <span key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1 fs-5`}>&#9733;</span>
