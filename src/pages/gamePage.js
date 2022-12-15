@@ -9,7 +9,7 @@ const initialState = {
     show: {isShow: false, indexes: [], winnerId: []},
     countMoves: 0,
     stars: [1, 1, 1],
-    time: {minute: 0, second: 0}
+    time: {minute: 1, second: 0}
 }
 
 export const GamePage = () => {
@@ -33,7 +33,7 @@ export const GamePage = () => {
             let indexOfOne = state.stars.lastIndexOf(1);
             let newStars = [...state.stars];
             newStars[indexOfOne] = 0;
-            setTimeout(function(){ setState({...state, stars: newStars, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
+            setTimeout(function(){ setState({ time: {...state.time, second: state.time.second - 2}, stars: newStars, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
         }
         setState({...state, show: {...state.show, isShow: true, indexes: [...state.show.indexes, index]}});
     }
@@ -42,7 +42,7 @@ export const GamePage = () => {
         if(state.show.winnerId.length === 8){
             setTimeout(() => {
                 dispatch({type: "result/getFinalResult",
-                    payload: {minute: state.time.minute, second: state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
+                    payload: {minute: state.time.minute, second: 60 - state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
                 navigate('/result')
             }, 1000)
         }// eslint-disable-next-line
@@ -58,7 +58,7 @@ export const GamePage = () => {
                     })}
                 </div>
                 <span>{state.countMoves} Moves</span>
-                <Timer time={state.time} setState={setState} />
+                <Timer time={state.time} setState={setState} initialState={initialState} />
                 <span className="fs-3" role="button" onClick={handleReload}>&#x21bb;</span>
             </div>
             <div className="game-box">

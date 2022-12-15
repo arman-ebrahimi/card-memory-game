@@ -1,17 +1,27 @@
 import {useEffect} from "react";
+import swal from 'sweetalert';
 
-export const Timer = ({time, setState}) => {
+export const Timer = ({time, setState, initialState}) => {
+
     useEffect(() => {
         let Int = setInterval(function (){
-            if(time.second === 59){
-                setState(prevState => ({...prevState, time: {minute: time.minute + 1, second: 0}}))
+            if(time.minute === 0 && time.second === 0){
+                return swal({
+                    title: "Time Over",
+                    text: "Time is finished! You can play again, by pressing button.",
+                    icon: "error",
+                    button: "Play Again",
+                }).then(() => setState(initialState));
+            }
+            if(time.minute === 1){
+                setState(prevState => ({...prevState, time: {minute: 0, second: 59}}))
             }
             else{
-                setState(prevState => ({...prevState, time: {...time, second: time.second + 1}}))
+                setState(prevState => ({...prevState, time: {...time, second: time.second - 1}}))
             }
         }, 1000)
         return () => clearInterval(Int)
-    })
+    }, [time.second, time.minute])
 
-    return <span>{time.minute < 10 && "0"}{time.minute} : {time.second < 10 && "0"}{time.second}</span>
+    return <span className={time.minute === 0 && time.second < 10 && "text-danger time-over"}>{time.minute < 10 && "0"}{time.minute} : {time.second < 10 && "0"}{time.second}</span>
 }
