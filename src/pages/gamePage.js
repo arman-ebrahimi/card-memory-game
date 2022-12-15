@@ -25,13 +25,13 @@ export const GamePage = () => {
         }
         if(state.show.isShow && shuffledArray[state.show.indexes[0]].id === shuffledArray[index].id){
             let indexOfZero = state.stars.indexOf(0);
-            let newStars = state.stars;
+            let newStars = [...state.stars];
             newStars[indexOfZero] = 1;
             return setState({...state, stars: newStars, countMoves: state.countMoves + 1, show: {isShow: false, indexes: [], winnerId: [...state.show.winnerId, shuffledArray[index].id]}})
         }
         else if(state.show.isShow && shuffledArray[state.show.indexes[0]].id !== shuffledArray[index].id){
             let indexOfOne = state.stars.lastIndexOf(1);
-            let newStars = state.stars;
+            let newStars = [...state.stars];
             newStars[indexOfOne] = 0;
             setTimeout(function(){ setState({...state, stars: newStars, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
         }
@@ -54,7 +54,7 @@ export const GamePage = () => {
             <div className="d-flex justify-content-around align-items-center w-25 mx-auto fw-bold fs-5">
                 <div className="d-flex">
                     {state.stars.map((item, index) => {
-                        return <span key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1 fs-5`}>&#9733;</span>
+                        return <span id="star" key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1 fs-5`}>&#9733;</span>
                     })}
                 </div>
                 <span>{state.countMoves} Moves</span>
