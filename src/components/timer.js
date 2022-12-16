@@ -11,6 +11,7 @@ export const Timer = ({time, setState, initialState}) => {
                     text: "Time is finished! You can play again, by pressing button.",
                     icon: "error",
                     button: "Play Again",
+                    allowOutsideClick: false
                 }).then(() => setState(initialState));
             }
             if(time.minute === 1){
@@ -21,6 +22,7 @@ export const Timer = ({time, setState, initialState}) => {
             }
         }, 1000)
         return () => clearInterval(Int)
+        // eslint-disable-next-line
     }, [time.second, time.minute])
 
     return <span className={time.minute === 0 && time.second < 10 && "text-danger time-over"}>{time.minute < 10 && "0"}{time.minute} : {time.second < 10 && "0"}{time.second}</span>
