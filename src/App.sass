@@ -5,17 +5,27 @@
   height: 120vh
   h1
     padding-top: 10px
+.info-bar
+  width: 50vw
+.game-box1
+  width: 40vw
+  grid-template-columns: repeat(4, 1fr)
+.game-box2
+  width: 55vw
+  grid-template-columns: repeat(5, 1fr)
+.game-box3
+  width: 65vw
+  grid-template-columns: repeat(6, 1fr)
 .game-box
+  height: 90vh
   background-color: yellow
-  width: 45vw
   aspect-ratio: 1 / 1
   margin: 5px auto
-  padding: 30px 25px
+  padding: 20px
   border-radius: 10px
   box-shadow: 15px 15px 35px black
   display: grid
-  grid-template-columns: repeat(4, 1fr)
-  grid-gap: 5%
+  grid-gap: 1.5vw
   div.single-card
     background-color: #333
     color: transparent
@@ -96,6 +106,34 @@
     transform: scale(1.2)
   100%
     transform: scale(1)
+
+.start-page
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  width: 40vw
+  height: 50vh
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  button
+    width: 30%
+    &:focus
+      border: 2px solid black
+  button:last-child
+    width: 50%
+    padding: 10px
+    background-color: yellow
+    border: solid black
+    font-size: 1.2em
+
+@media screen and (max-width: 778px)
+  .game-box1, .game-box2, .game-box3, .info-bar
+    width: 80vw
+  .game-box
+    height: 80vh
 
 
 

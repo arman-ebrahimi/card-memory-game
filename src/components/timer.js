@@ -1,7 +1,10 @@
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import swal from 'sweetalert';
 
 export const Timer = ({time, setState, initialState}) => {
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         let Int = setInterval(function (){
@@ -12,7 +15,7 @@ export const Timer = ({time, setState, initialState}) => {
                     icon: "error",
                     button: "Play Again",
                     allowOutsideClick: false
-                }).then(() => setState(initialState));
+                }).then(() => { setState(initialState); navigate("/"); });
             }
             if(time.minute === 1){
                 setState(prevState => ({...prevState, time: {minute: 0, second: 59}}))
@@ -25,5 +28,5 @@ export const Timer = ({time, setState, initialState}) => {
         // eslint-disable-next-line
     }, [time.second, time.minute])
 
-    return <span className={time.minute === 0 && time.second < 10 && "text-danger time-over"}>{time.minute < 10 && "0"}{time.minute} : {time.second < 10 && "0"}{time.second}</span>
+    return <span className={time.minute === 0 && time.second < 10 ? "text-danger time-over" : ""}>{time.minute < 10 && "0"}{time.minute} : {time.second < 10 && "0"}{time.second}</span>
 }

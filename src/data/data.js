@@ -8,10 +8,19 @@ export const icons = [
     {code: "fas fa-bell", id: 5},
     {code: "fas fa-chess-queen", id: 6},
     {code: "fab fa-chrome", id: 7},
+    {code: "fas fa-archway", id: 8},
+    {code: "fas fa-baby-carriage", id: 9},
+    {code: "fas fa-beer", id: 10},
+    {code: " fas fa-bomb", id: 11},
 ];
 
-let allIcons = icons.concat(icons);
-export const shuffledArray = shuffleArray(allIcons);
+let eightIcons = icons.slice(0, 8).concat(icons.slice(0, 8));
+let tenIcons = icons.slice(0, 10).concat(icons.slice(0, 10));
+let twelveIcons = icons.concat(icons);
+
+export const shuffledArray1 = shuffleArray(eightIcons);
+export const shuffledArray2 = shuffleArray(tenIcons);
+export const shuffledArray3 = shuffleArray(twelveIcons);
 
 function shuffleArray(allIcons){
     let i, j, x;

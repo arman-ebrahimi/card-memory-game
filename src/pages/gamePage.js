@@ -1,9 +1,9 @@
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 
 import {Timer} from "../components/timer";
-import {shuffledArray} from "../data/data.js";
+import {shuffledArray1, shuffledArray2, shuffledArray3} from "../data/data.js";
 
 const initialState = {
     show: {isShow: false, indexes: [], winnerId: []},
@@ -16,6 +16,8 @@ export const GamePage = () => {
     const [state, setState] = useState(initialState);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const level = useSelector(state => state.game.level);
+    const shuffledArray = level === "Easy" ? shuffledArray1 : level === "Medium" ? shuffledArray2 : shuffledArray3;
     const handleReload = () => {
         setState(initialState);
     }
@@ -39,9 +41,10 @@ export const GamePage = () => {
     }
 
     useEffect(() => {
+
         if(state.show.winnerId.length === 8){
             setTimeout(() => {
-                dispatch({type: "result/getFinalResult",
+                dispatch({type: "game/getFinalResult",
                     payload: {minute: state.time.minute, second: 60 - state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
                 navigate('/result')
             }, 1000)
@@ -50,18 +53,19 @@ export const GamePage = () => {
 
     return(
         <>
-            <h1>Matching Game</h1>
-            <div className="d-flex justify-content-around align-items-center w-25 mx-auto fw-bold fs-5">
+            <h2>Matching Game</h2>
+            <div className="d-flex justify-content-around align-items-center mx-auto fw-bold fs-5 info-bar">
+                <span>Level: <span style={{color: level === "Hard" ? "orangered" : level === "Medium" ? "blue" : "green"}}>{level}</span></span>
                 <div className="d-flex">
                     {state.stars.map((item, index) => {
-                        return <span id="star" key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1 fs-5`}>&#9733;</span>
+                        return <span id="star" key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1`}>&#9733;</span>
                     })}
                 </div>
                 <span>{state.countMoves} Moves</span>
                 <Timer time={state.time} setState={setState} initialState={initialState} />
                 <span className="fs-3" role="button" onClick={handleReload}>&#x21bb;</span>
             </div>
-            <div className="game-box">
+            <div className={`game-box ${level === "Easy" ? "game-box1" : level === "Medium" ? "game-box2" : "game-box3"}`}>
                 {shuffledArray.map((item, index) => {
                     return(
                         <div key={index} className={`${item.code} single-card ${state.show.isShow && state.show.indexes.includes(index) && "show-card"} ${state.show.winnerId.includes(item.id) && "winner-card"}`}

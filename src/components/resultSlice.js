@@ -1,13 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const resultSlice = createSlice({
-    name: "result",
-    initialState: null,
+const gameSlice = createSlice({
+    name: "game",
+    initialState: {result: null, level: ""},
     reducers: {
         getFinalResult(state, action){
-            return state = action.payload;
+            state.result = action.payload;
+        },
+        gameLevel(state, action){
+            state.level = action.payload;
         }
     }
 })
 
-export default resultSlice.reducer;
+export default gameSlice.reducer;
