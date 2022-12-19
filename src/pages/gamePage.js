@@ -42,7 +42,7 @@ export const GamePage = () => {
 
     useEffect(() => {
         const length = state.show.winnerId.length;
-        if(length === 8 && level === "Easy" || length === 10 && level === "Medium" || length === 12 && level === "Hard"){
+        if((length === 8 && level === "Easy") || (length === 10 && level === "Medium") || (length === 12 && level === "Hard")){
             setTimeout(() => {
                 dispatch({type: "game/getFinalResult",
                     payload: {minute: state.time.minute, second: 60 - state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
