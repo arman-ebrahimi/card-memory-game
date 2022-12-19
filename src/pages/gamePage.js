@@ -55,7 +55,7 @@ export const GamePage = () => {
         <>
             <h2>Matching Game</h2>
             <div className="d-flex justify-content-around align-items-center mx-auto fw-bold fs-5 info-bar">
-                <span>Level: <span style={{color: level === "Hard" ? "orangered" : level === "Medium" ? "blue" : "green"}}>{level}</span></span>
+                <span><button onClick={() => navigate("/")} className="bg-transparent border-0" title="Change level">&#x21bb;</button> Level: <span style={{color: level === "Hard" ? "orangered" : level === "Medium" ? "blue" : "green"}}>{level}</span></span>
                 <div className="d-flex">
                     {state.stars.map((item, index) => {
                         return <span id="star" key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1`}>&#9733;</span>
@@ -63,7 +63,7 @@ export const GamePage = () => {
                 </div>
                 <i>{state.countMoves} Moves</i>
                 <Timer time={state.time} setState={setState} initialState={initialState} />
-                <span className="fs-3" role="button" onClick={handleReload}>&#x21bb;</span>
+                <span className="fs-3" role="button" onClick={handleReload} title="Restart this game">&#x21bb;</span>
             </div>
             <div className={`game-box ${level === "Easy" ? "game-box1" : level === "Medium" ? "game-box2" : "game-box3"}`}>
                 {shuffledArray.map((item, index) => {
