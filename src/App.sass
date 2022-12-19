@@ -7,6 +7,8 @@
     padding-top: 10px
 .info-bar
   width: 50vw
+  > span:last-child
+    font-size: 1.3em
 .game-box1
   width: 40vw
   grid-template-columns: repeat(4, 1fr)
@@ -210,6 +212,13 @@
       font-size: 0.8em
   .start-box
     width: 80vw
+@media screen and (max-width: 488px)
+  .info-bar
+    > span:first-child, i
+      font-size: 0.6em
+    > span:last-child
+      font-size: 1em
+
 
 
 
