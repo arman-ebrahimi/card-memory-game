@@ -35,14 +35,14 @@ export const GamePage = () => {
             let indexOfOne = state.stars.lastIndexOf(1);
             let newStars = [...state.stars];
             newStars[indexOfOne] = 0;
-            setTimeout(function(){ setState({ time: {...state.time, second: state.time.second - 2}, stars: newStars, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 2000)
+            setTimeout(function(){ setState({ time: {...state.time, second: state.time.second - 1}, stars: newStars, countMoves: state.countMoves + 1, show: {...state.show, isShow: false, indexes: []}}) }, 1000)
         }
         setState({...state, show: {...state.show, isShow: true, indexes: [...state.show.indexes, index]}});
     }
 
     useEffect(() => {
-
-        if(state.show.winnerId.length === 8){
+        const length = state.show.winnerId.length;
+        if(length === 8 && level === "Easy" || length === 10 && level === "Medium" || length === 12 && level === "Hard"){
             setTimeout(() => {
                 dispatch({type: "game/getFinalResult",
                     payload: {minute: state.time.minute, second: 60 - state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
@@ -61,7 +61,7 @@ export const GamePage = () => {
                         return <span id="star" key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1`}>&#9733;</span>
                     })}
                 </div>
-                <span>{state.countMoves} Moves</span>
+                <i>{state.countMoves} Moves</i>
                 <Timer time={state.time} setState={setState} initialState={initialState} />
                 <span className="fs-3" role="button" onClick={handleReload}>&#x21bb;</span>
             </div>

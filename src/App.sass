@@ -108,32 +108,108 @@
     transform: scale(1)
 
 .start-page
+  position: relative
+  height: 100vh
+  top: -60vh
+  animation: pos 1s forwards ease-in-out
+
+@keyframes pos
+  0%
+    top: -60vh
+    left: -1%
+  30%
+    top: 0
+    left: 0
+  45%
+    top: -5%
+    left: 1%
+  60%
+    top: -1%
+    left: 0
+  70%
+    top: -3%
+    left: -1%
+  80%
+    top: -1%
+    left: 0
+  90%
+    top: -2%
+    left: 1%
+  100%
+    top: 0
+    left: 0
+
+.start-box
   display: flex
   flex-direction: column
   justify-content: space-between
   align-items: center
+  height: 60vh
   width: 40vw
-  height: 50vh
   position: absolute
-  top: 50%
   left: 50%
-  transform: translate(-50%, -50%)
+  top: 20%
+  transform: translateX(-50%)
+  border: solid 1px
+  border-radius: 15% 4% 15% 4%
+  background-color: #555
+  padding: 20px
+  h2
+    color: white
   button
     width: 30%
     &:focus
-      border: 2px solid black
+      border: 2px solid white
   button:last-child
-    width: 50%
+    width: 70%
+    color: white
     padding: 10px
-    background-color: yellow
-    border: solid black
+    border: none
+    background-color: #222222
+    border-radius: 5px
     font-size: 1.2em
+    animation: btn-shadow infinite 1s
+@keyframes btn-shadow
+  0%
+    box-shadow: 0 0 10px 3px white
+  50%
+    box-shadow: 0 0 15px 5px white
+  100%
+    box-shadow: 0 0 10px 3px white
 
-@media screen and (max-width: 778px)
+.line1, .line2
+  display: flex
+  align-items: flex-end
+  z-index: 1
+  height: 21vh
+  width: 2px
+  border: solid 1px
+  position: absolute
+  span
+    position: relative
+    left: -9px
+    bottom: -5px
+.line1
+  left: 35%
+.line2
+  left: 65%
+
+@media screen and (max-width: 900px)
   .game-box1, .game-box2, .game-box3, .info-bar
-    width: 80vw
+    width: 90vw
   .game-box
     height: 80vh
+  .info-bar
+    > span:first-child, i
+      font-size: 0.9em
+  .start-box
+    width: 60vw
+@media screen and (max-width: 600px)
+  .info-bar
+    > span:first-child, i
+      font-size: 0.8em
+  .start-box
+    width: 80vw
 
 
 
