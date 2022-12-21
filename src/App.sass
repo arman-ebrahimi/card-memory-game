@@ -197,11 +197,12 @@
 .line2
   left: 65%
 
-@media screen and (max-width: 900px)
+@media screen and (max-width: 1000px)
   .game-box2, .game-box3, .info-bar
-    width: 90vw
+    width: 85vw
+@media screen and (max-width: 900px)
   .game-box1
-    width: 80vw
+    width: 70vw
   .game-box
     height: 80vh
   .info-bar
@@ -210,12 +211,14 @@
   .start-box
     width: 60vw
 @media screen and (max-width: 600px)
+  .game-box2, .game-box3, .info-bar
+    width: 70vw
   .info-bar
     > span:first-child, i
       font-size: 0.8em
   .start-box
     width: 80vw
-  .game-box3, .game-box2
+  .game-box2, .game-box3
     grid-template-columns: repeat(4, 1fr)
 
 @media screen and (max-width: 488px)
@@ -226,6 +229,8 @@
       font-size: 1.3em
     > span:last-child
       font-size: 1em
+  .game-box1, .game-box2, .game-box3
+    width: 85vw
 
 
 
