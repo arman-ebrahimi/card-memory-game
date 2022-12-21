@@ -9,7 +9,7 @@ export const ResultPage = () => {
         <div className="result-page">
             <img width="100px" height="100px" alt="check" src="/png.monster-138-370x354.webp" />
             <h3>Game Level: {level}</h3>
-            <h4>You won in {allResults.minute} minute(s), {allResults.second} seconds, using {allResults.moves} moves, for {allResults.stars} stars</h4>
+            <h4>You won in {allResults.second} seconds<br />using {allResults.moves} moves<br />for {allResults.stars} stars</h4>
             <button className="btn btn-success btn-lg" onClick={() => navigate("/")}>Start Another Game</button>
         </div>
     )

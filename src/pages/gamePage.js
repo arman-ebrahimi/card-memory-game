@@ -45,7 +45,7 @@ export const GamePage = () => {
         if((length === 8 && level === "Easy") || (length === 10 && level === "Medium") || (length === 12 && level === "Hard")){
             setTimeout(() => {
                 dispatch({type: "game/getFinalResult",
-                    payload: {minute: state.time.minute, second: 60 - state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
+                    payload: {second: 60 - state.time.second, moves: state.countMoves, stars: state.stars.filter(item => item === 1).length}})
                 navigate('/result')
             }, 1000)
         }// eslint-disable-next-line
