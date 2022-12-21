@@ -10,7 +10,7 @@
   > span:last-child
     font-size: 1.3em
 .game-box1
-  width: 40vw
+  width: 45vw
   grid-template-columns: repeat(4, 1fr)
 .game-box2
   width: 55vw
@@ -198,8 +198,10 @@
   left: 65%
 
 @media screen and (max-width: 900px)
-  .game-box1, .game-box2, .game-box3, .info-bar
+  .game-box2, .game-box3, .info-bar
     width: 90vw
+  .game-box1
+    width: 80vw
   .game-box
     height: 80vh
   .info-bar
@@ -213,6 +215,9 @@
       font-size: 0.8em
   .start-box
     width: 80vw
+  .game-box3, .game-box2
+    grid-template-columns: repeat(4, 1fr)
+
 @media screen and (max-width: 488px)
   .info-bar
     > span:first-child, i
