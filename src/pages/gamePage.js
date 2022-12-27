@@ -20,7 +20,7 @@ export const GamePage = () => {
     const level = useSelector(state => state.game.level);
     useEffect(() => {
         setShuffledArray(level === "Easy" ? shuffledArray1() : level === "Medium" ? shuffledArray2() : shuffledArray3())
-    }, [])// Whenever GamePage mounts, array calls again
+    }, [level])// Whenever GamePage mounts, array calls again
     const handleReload = () => {
         setState(initialState);
         setShuffledArray(level === "Easy" ? shuffledArray1() : level === "Medium" ? shuffledArray2() : shuffledArray3())
