@@ -14,12 +14,16 @@ const initialState = {
 
 export const GamePage = () => {
     const [state, setState] = useState(initialState);
+    const [shuffledArray, setShuffledArray] = useState([])
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const level = useSelector(state => state.game.level);
-    const shuffledArray = level === "Easy" ? shuffledArray1 : level === "Medium" ? shuffledArray2 : shuffledArray3;
+    useEffect(() => {
+        setShuffledArray(level === "Easy" ? shuffledArray1() : level === "Medium" ? shuffledArray2() : shuffledArray3())
+    }, [])// Whenever GamePage mounts, array calls again
     const handleReload = () => {
         setState(initialState);
+        setShuffledArray(level === "Easy" ? shuffledArray1() : level === "Medium" ? shuffledArray2() : shuffledArray3())
     }
     const handleClick = (e, index) => {
         if(state.show.indexes.length === 2 || state.show.indexes[0] === index){

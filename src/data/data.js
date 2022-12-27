@@ -18,9 +18,15 @@ let eightIcons = icons.slice(0, 8).concat(icons.slice(0, 8));
 let tenIcons = icons.slice(0, 10).concat(icons.slice(0, 10));
 let twelveIcons = icons.concat(icons);
 
-export const shuffledArray1 = shuffleArray(eightIcons);
-export const shuffledArray2 = shuffleArray(tenIcons);
-export const shuffledArray3 = shuffleArray(twelveIcons);
+export function shuffledArray1() {
+    return shuffleArray(eightIcons)
+}
+export function shuffledArray2() {
+    return shuffleArray(tenIcons)
+}
+export function shuffledArray3() {
+    return shuffleArray(twelveIcons)
+}
 
 function shuffleArray(allIcons){
     let i, j, x;
