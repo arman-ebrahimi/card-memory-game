@@ -55,14 +55,29 @@ export const GamePage = () => {
         }// eslint-disable-next-line
     }, [state.show.winnerId.length])
 
+    useEffect(() => {
+        let address = "";
+        if(level === "Easy" || level === "Medium"){
+            address = "/Fluffing-a-Duck.mp3"
+        }
+        else{
+            address = "/Powerful-Trap-.mp3"
+        }
+        const audio = new Audio(address);
+        audio.volume = 0.5;
+        audio.loop = true;
+        audio.play().then();
+        return () => audio.pause()
+    },[level])
+
     return(
         <>
             <h2>Matching Game</h2>
             <div className="d-flex justify-content-around align-items-center mx-auto fw-bold fs-5 info-bar">
-                <span><button onClick={() => navigate("/")} className="bg-transparent border-0 fw-bold" title="Change level">&#x21bb;</button> Level: <span style={{color: level === "Hard" ? "orangered" : level === "Medium" ? "blue" : "green"}}>{level}</span></span>
+                <span><button onClick={() => navigate("/")} className="bg-transparent border-0 fw-bold" title="Change level">&#x21bb;</button> Level: <span style={{color: level === "Hard" ? "red" : level === "Medium" ? "blue" : "green"}} className={level === "Hard" && "hard-anima"}>{level}</span></span>
                 <div className="d-flex">
                     {state.stars.map((item, index) => {
-                        return <span key={index} className={`${item === 1 ? "anima1" : "anima2"} me-1`}>&#9733;</span>
+                        return <span key={index} className={`${item === 1 ? "big-star" : "small-star"} me-1`}>&#9733;</span>
                     })}
                 </div>
                 <i>{state.countMoves} Moves</i>

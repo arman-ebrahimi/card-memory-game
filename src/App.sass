@@ -16,8 +16,8 @@
   width: 55vw
   grid-template-columns: repeat(5, 1fr)
 .game-box3
-  width: 65vw
-  grid-template-columns: repeat(6, 1fr)
+  width: 85vw
+  grid-template-columns: repeat(7, 1fr)
 .game-box
   height: 90vh
   background-color: yellow
@@ -68,14 +68,23 @@
     background-color: rgba(255, 2555, 255, 0.7)
     padding: 2px 10px
     border-radius: 5px
-.star-reset
-  color: black
-.anima1
+.big-star
   color: black
   animation: star-big 0.8s
-.anima2
+.small-star
   color: white
   animation: star-small 0.8s
+
+.hard-anima
+  display: inline-block
+  animation: rescale 1s infinite
+@keyframes rescale
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.1)
+  100%
+    transform: scale(1)
 
 @keyframes star-big
   0%
@@ -201,21 +210,25 @@
   left: 65%
 
 @media screen and (max-width: 1000px)
-  .game-box2, .game-box3, .info-bar
+  .game-box2, .info-bar
     width: 85vw
+  .game-box3
+    width: 90vw
 @media screen and (max-width: 900px)
   .game-box1
     width: 70vw
   .game-box
-    height: 80vh
+    height: 85vh
   .info-bar
     > span:first-child, i
       font-size: 0.9em
   .start-box
     width: 60vw
 @media screen and (max-width: 600px)
-  .game-box2, .game-box3, .info-bar
+  .game-box2, .info-bar
     width: 70vw
+  .game-box3
+    width: 65vw
   .info-bar
     > span:first-child, i
       font-size: 0.8em
@@ -235,7 +248,7 @@
   .game-box1, .game-box2, .game-box3, .info-bar
     width: 85vw
   .game-box
-    height: 70vh
+    height: 80vh
   .game-box1
     height: 60vh
 

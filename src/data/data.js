@@ -12,6 +12,8 @@ export const icons = [
     {code: "fas fa-baby-carriage", id: 9},
     {code: "fas fa-beer", id: 10},
     {code: " fas fa-bomb", id: 11},
+    {code: "fa fa-heart", id: 12},
+    {code: "fa fa-plane", id: 13}
 ];
 
 let eightIcons = icons.slice(0, 8).concat(icons.slice(0, 8));
