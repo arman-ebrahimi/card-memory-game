@@ -3,17 +3,17 @@
   "name": "Memory Cards Game",
   "icons": [
     {
-      "src": "123.png",
+      "src": "135043.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "123.png",
+      "src": "135043.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "123.png",
+      "src": "135043.png",
       "type": "image/png",
       "sizes": "512x512"
     }
