@@ -6,7 +6,6 @@ import './App.sass';
 import {GamePage, ResultPage, StartPage} from "./pages";
 
 function App() {
-
   return (
     <div className="App">
       <Router>

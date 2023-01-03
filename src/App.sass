@@ -3,8 +3,13 @@
   background-image: url("images_z9v6.jpeg")
   text-align: center
   height: 120vh
-  h1
-    padding-top: 10px
+.title
+  animation: shadow 1s infinite
+@keyframes shadow
+  0%
+    text-shadow: 0 0 5px 5px yellow
+  100%
+    text-shadow: 0 0 5px 5px white
 .info-bar
   width: 50vw
   > span:last-child
@@ -18,7 +23,20 @@
 .game-box3
   width: 85vw
   grid-template-columns: repeat(7, 1fr)
+  border: solid
+
+.danger-box
+  animation: chg-border 1s infinite
+@keyframes chg-border
+  0%
+    border: solid red
+  50%
+    border: solid transparent
+  100%
+    border: solid red
+
 .game-box
+  border: none
   height: 90vh
   background-color: yellow
   aspect-ratio: 1 / 1
