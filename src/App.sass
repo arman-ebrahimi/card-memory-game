@@ -4,12 +4,20 @@
   text-align: center
   height: 120vh
 .title
-  animation: shadow 1s infinite
-@keyframes shadow
+  animation: change-sh 1s infinite backwards
+@keyframes change-sh
   0%
-    text-shadow: 0 0 5px 5px yellow
+    text-shadow: 0 0 5px yellow
+  20%
+    text-shadow: 0 0 5px seagreen
+  40%
+    text-shadow: 0 0 5px tomato
+  60%
+    text-shadow: 0 0 5px purple
+  80%
+    text-shadow: 0 0 5px orangered
   100%
-    text-shadow: 0 0 5px 5px white
+    text-shadow: 0 0 5px white
 .info-bar
   width: 50vw
   > span:last-child
