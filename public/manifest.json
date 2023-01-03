@@ -1,6 +1,7 @@
 {
   "short_name": "Cards game",
   "name": "Memory Cards Game",
+  "description": "This app made with react and redux",
   "icons": [
     {
       "src": "135043.png",
