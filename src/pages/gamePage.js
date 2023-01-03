@@ -30,6 +30,9 @@ export const GamePage = () => {
             return
         }
         if(state.show.isShow && shuffledArray[state.show.indexes[0]].id === shuffledArray[index].id){
+            const audio = new Audio("/TCD25PS-game-success.mp3");
+            audio.volume = 0.3;
+            audio.play().then();
             let indexOfZero = state.stars.indexOf(0);
             let newStars = [...state.stars];
             newStars[indexOfZero] = 1;

@@ -8,8 +8,8 @@ export const ResultPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const audio = new Audio("/TCD25PS-game-success.mp3");
-        audio.volume = 0.1;
+        const audio = new Audio("/tada-fanfare-a-6313.mp3");
+        audio.volume = 0.4;
         audio.play().then();
     },[])
     return(
